@@ -1,39 +1,49 @@
-#include <cs50.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <cs50.h>
 
-void printline(int size,int row);
+void print_space(int n);
+void print_hashtag(int n);
 
 
-int main(void){
+int main(void)
+{
+    int height, space, hashtag;
+    do
+    {
+        height = get_int("What's the height : ?\n");
+    }
+    while(height < 1 || height > 8);
 
-	char* s_size = malloc(8);
-	int n;
+    space = height-1;
+    hashtag=1;
 
-	printf("Height : ");
-	while(1)
-	{
-		fgets(s_size, 8, stdin);
-		n = atoi(s_size);
-
-		if(n < 23){
-            break;
-        } else if (n > 0){
-            break;
-        }
-		printf("Try again ^_^");
-	}
-	for(int i = 1; i <= n; i++){
-        printline(n,i);
+    for(int i=0;i<height;i++)
+    {
+        print_space(space);
+        print_hashtag(hashtag);
+        printf("  ");
+        print_hashtag(hashtag);
+        printf("\n");
+        space--;
+        hashtag++;
     }
 }
-void printline(int n, int row){
-	int Empty = n - row;
-	for(int i = 0; i < Empty; i++){
+
+
+
+
+void print_space(int n)
+{
+    for(int i=0;i<n;i++)
+    {
         printf(" ");
     }
-	for(int i = 0; i < row; i++){
+}
+
+void print_hashtag(int n)
+{
+    for(int i=0;i<n;i++)
+    {
         printf("#");
     }
-	printf("\n");
 }
